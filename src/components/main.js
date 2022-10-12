@@ -104,13 +104,14 @@ function TagMovies(props) {
     {
     props.movies.map((movie) => {
       return(
-        <li className='movie' key={movie.id} onClick={() => {props.setDetailModal(movie.id)}}>
+        <li className='movie' key={movie.id}>
+          <div className='layer' onClick={() => {navigate('/palyer/'+movie.id)}} />
           <img className="moviePoster" src={process.env.PUBLIC_URL + movie.posterImg} />
           <div className={'movieInfo'}>
             <div className='title'>{movie.title}</div>
             <div className='movieMenu'>
-              <button onClick={() => {navigate('/palyer/'+movie.id)}}>재생</button>
               <button>찜</button>
+              <button onClick={() => {props.setDetailModal(movie.id)}}>상세보기</button>
             </div>
           </div>
         </li>
