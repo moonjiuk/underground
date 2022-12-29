@@ -1,8 +1,13 @@
 @import './responsive.scss';
 
+button {
+  cursor: pointer;
+}
+
 .App {
   background-color: #000;
   color: white;
+  cursor: default;
   
   ul {
     list-style-type: none;
@@ -13,7 +18,7 @@
   position: fixed;
   top:0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   z-index: 9998;
   background-color: rgba(0, 0, 0, 0.5);
@@ -29,7 +34,7 @@
 }
 
 header { // 시멘틱태그 공부
-  width: 100vw;
+  width: 100%;
   position: fixed;
   background-color: rgba(0, 0, 0, 0);
   z-index: 8888;
@@ -38,6 +43,8 @@ header { // 시멘틱태그 공부
     position: absolute;
     left: 6.25vw;;
     top: 20px;
+    background-color: rgba(0, 0, 0, 0);
+    border: none;
   }
   
   nav{  // ul, li를 써보자!
@@ -68,24 +75,27 @@ header { // 시멘틱태그 공부
 
   .searchModal{
     position: absolute;
-    right: 80px;
+    right: 15vw;
     top: 20px;
     display: flex;
     flex-direction: column;
     width: 300px;
+    border: solid 2px white;
+    border-radius: 12px;
+    background-color: #000;
     z-index: 9999;
-
+    
     .searchInput {
       position: relative;
-      width: 220px;
+      width: 300px;
       height: 35px;
+      border-bottom: 2px solid white;
       
       .searchText{
         width: 100%;
         height: 100%;;
-        background-color: rgba(231, 231, 231, 0.31);
-        color: #000;
-        border-radius: 16px;
+        background-color: rgba(0, 0, 0, 0);
+        color: #fff;
         border: none;
         outline: none;
       }
@@ -102,11 +112,43 @@ header { // 시멘틱태그 공부
         }
       }
     }
+    .words {
+      .wordsBtns {
+        display: flex;
+        flex-direction: row;
+        width: 300px;
+        border-bottom: 2px solid white;
+        button {
+          width: 50%;
+          height: 40px;
+          background-color: #000;
+          color: #fff;
+          border: solid 5px black;
+          border-radius: 12px;
+          font-size: medium;
+        }
 
-    .searchList {
-      background-color: #000;
-      display: flex;
-      flex-direction: row;
+        .selectedBtn {
+          background-color: #fff;
+          color: #000;
+        }
+      }
+    }
+
+    .wordList {
+      text-align: center;
+      color: #fff;
+      
+      .word {
+        margin: 10px 0;
+
+        button{
+          position: absolute;
+          background-color: rgba(0, 0, 0, 0);
+          border: none;
+          color: #fff;
+        }
+      }
     }
   }
 
@@ -114,7 +156,7 @@ header { // 시멘틱태그 공부
     background-color: #404040;
     width: 120px;
     position: absolute;
-    right: 20px;
+    right: 3vw;
     top: 40px;
     padding: 0;
     z-index: 9997;
@@ -131,9 +173,19 @@ header { // 시멘틱태그 공부
     }
   }
 
+  .menuModalOut {
+    position: fixed;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 9996;
+    background-color: rgba(0, 0, 0, 0);
+  }
+
   .loginModal {
     width: 450px;
-    height: 300px;
+    height: 320px;
     position: relative;
     display: flex;
     flex-direction: column;
@@ -144,6 +196,20 @@ header { // 시멘틱태그 공부
     color: #fff;
     
     z-index: 9999;
+
+    .loginTitle {
+      margin-bottom: 5px;
+    }
+
+    .warnning {
+      height: 10px;
+      font-size: 10px;
+      color: red;
+    }
+
+    .hidedWarnning {
+      height: 10px;
+    }
 
     .loginInput {
       width: 70%;
@@ -156,9 +222,10 @@ header { // 시멘틱태그 공부
       margin-bottom: 30px;
     }
 
-    .loginCheckbox {
-      width: 100%;
-      transform: translate(-35%, -15px);
+    .saveId{
+      width: 71%;
+      transform: translateY(-15px);
+      font-size: 13px;
     }
 
     .loginBtn {
@@ -167,18 +234,52 @@ header { // 시멘틱태그 공부
       border: none;
       background-color: #fff;
     }
+
+    .loginMenuBtns {
+      margin-top: 10px;
+      button {
+        border: none;
+        color:#fff;
+        background-color: rgba(0, 0, 0, 0);
+      }
+    }
+  }
+}
+
+.backButton {
+  position: fixed;
+  top: 5px;
+  left: 5px;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+}
+
+footer {
+  padding: 120px 0;
+  text-align: center;
+  background-color: #000;
+
+  div {
+    margin: 10px;
+  }
+
+  span {
+    margin: 10px
   }
 }
 
 
 main {
   width: 100%;
-  overflow: hidden;
+  overflow: hidden;  
 
   .home{
+    ul {
+      padding: 0;
+    }
     @include desktop{
       .hero {
-        width: 100vw;
+        width: 100%;
         height: 40vw;
   
         margin-bottom: 65px;
@@ -186,24 +287,32 @@ main {
     }
     @include tablet{
       .hero {
-        width: 100vw;
+        width: 100%;
         height: 39.0625vw;
   
         margin-bottom: 10px;
       }
     }
+    @include mobile{
+      .hero {
+        width: 100%;
+        height: 97.2vw;
+
+        margin-bottom: 14px;
+      }
+    }
     .movieLists {
       margin-top: 0;
-    
+      
       .movieList {
-        width: 100vw;
+        width: 100%;
         display: flex;
         flex-wrap: wrap;
         align-items: center;
         position: relative;
         @include desktop{
           margin-bottom: 65px;
-          transform: translateX(-80px);
+          // transform: translateX(-80px);
           
           .voidReducedTag {
             width: 100%;
@@ -229,7 +338,7 @@ main {
         }
         @include tablet{
           margin-bottom: 10px;
-          transform: translateX(-80px);
+          // transform: translateX(-80px);
           
           .voidReducedTag {
             width: 100%;
@@ -254,6 +363,36 @@ main {
           }
         }
 
+        @include mobile{
+          margin-bottom: 10px;
+          // transform: translateX(-80px);
+          
+          .voidReducedTag {
+            width: 100%;
+            height: 10px;
+          }
+
+          .reducedTag {
+            width: 100%;
+            height: 10px;
+            margin-left: 10px;
+            text-align: start;
+            
+            .tagIcon {
+              transform: translateY(-13px);
+              margin-right: 3px;
+              width: 10px;
+            }
+            
+            .tagName {
+              position: relative;
+              bottom: 15px;
+              font-size: xx-small;
+            }
+      
+          }
+        }
+
       
         .movieScroll {
           overflow-x: scroll;
@@ -261,14 +400,24 @@ main {
           flex-direction: row;
           width: 100%;
           height: 100%;
+          padding-right: 36px;
+          padding-left: 40px;
           
           .tag {
-            padding-right: 50px;
             @include desktop {
+              padding-right: 50px;
               height: 163px;
+              width: 80px;
             }
             @include tablet {
+              padding-right: 50px;
               height: 124px;
+              width: 80px;
+            }
+            @include mobile {
+              padding-right: 10px;
+              height: 60px;
+              width: 80px;
             }
             display: flex;
             flex-direction: column;
@@ -276,7 +425,27 @@ main {
             text-align: center;
             
             .tagIcon {
-              width: 80px;
+              @include desktop {
+                width: 80px;
+              }
+              @include tablet {
+                width: 50px;
+              }
+              @include mobile {
+                width: 30px;
+              }
+            }
+            .tagName {
+              @include desktop {
+                width: 80px;
+              }
+              @include tablet {
+                width: 80px;
+              }
+              @include mobile {
+                width: 50px;
+                font-size: x-small;
+              }
             }
           }
 
@@ -284,11 +453,16 @@ main {
             position: absolute;
             @include desktop {
               height: 163px;
+              font-size: x-large;
             }
             @include tablet {
               height: 124px;
+              font-size: x-large;
             }
-            font-size: x-large;
+            @include mobile {
+              height: 60px;
+              font-size: small;
+            }
             color: #fff;
             background-color: rgba(0, 0, 0, 0.3);
             border: none;
@@ -297,12 +471,12 @@ main {
             
           .prevBtn {
             @extend .scrollBtn;
-            left: 40px;
+            left: 0;
           }
             
           .nextBtn {
             @extend .scrollBtn;
-            right: 18px;
+            right: 0;
           }
           
           .movie{
@@ -321,6 +495,13 @@ main {
                 height: 124px;
               }
             }
+            @include mobile {
+              margin: 0 4px;
+              .moviePoster { // ul, li로 묶기
+                width: 107px;
+                height: 60px;
+              }
+            }
             &:hover {
               .layer {
                 display: block;
@@ -332,9 +513,13 @@ main {
             .layer {
               display: none;
               position: absolute;
-              background-color: rgba(0, 0, 0, 0.5);
               width: 100%;
               height: 100%;
+              background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0) 20%,
+                rgba(0, 0, 0, 0.7) 100%
+              );
             }
           
           .movieInfo {
@@ -348,10 +533,10 @@ main {
 
             .movieMenu {
               position: absolute;
-              top: 10px;
+              bottom: 15px;
               right: 10px;
               display: flex;
-              flex-direction: column;
+              flex-direction: row;
               button {
                 background-color: rgba(0, 0, 0, 0);
                 color: white;
@@ -422,42 +607,883 @@ main {
         
        }
     }
-    footer {
-      margin-top: 120px;
-      text-align: center;
-      margin-bottom: 120px;
-    
-      div {
-        margin: 10px;
-      }
-    
-      span {
-        margin: 10px
-      }
-    }
-
+  
     .gradiant {
       position: fixed;
       bottom: 0;
-      width: 100vw;
+      width: 100%;
       height: 120px;
       z-index: 6666;
       background: linear-gradient(
         to bottom,
         rgba(0, 0, 0, 0) 0%,
         rgba(0, 0, 0, 1) 100%
-      ),
+      );
     }
   }
-}
+
+  .find {
+    width: 600px;
+    height: 400px;
+    text-align: center;
+    margin: auto;
+    margin-top: 150px;
+    margin-bottom: 50px;
+    border: solid 2px white;
+    border-radius: 12px;
+
+    .findBtns {
+      padding: 0;
+      border-bottom: solid 2px white;
+      button {
+        width: 50%;
+        height: 40px;
+        font-size: large;
+        background-color: #000;
+        color: #fff;
+        border: none; 
+        border-radius: 12px;
+      }
+      .selectedFindBtn {
+        background-color: #fff;
+        color: #000;
+        border: solid 5px black;
+      }
+    }
+
+    .confirmBtns {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-around;
+      align-items: center;
+      height: 358px;
+
+      button {
+        width: 150px;
+        height: 150px;
+        background-color: black;
+        border: solid 2px white;
+        border-radius: 12px;
+      }
+    }
+  }
+
+  .signin {
+    
+    text-align: center;
+    h1 {
+      margin-top: 100px;
+    }
+
+    .inputs {
+      width: 800px;
+      margin: auto;
+      margin-top: 50px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      
+      .inputBox {
+        margin: 30px 0;
+        
+        .inputName {
+          position: absolute;
+          left: 200px;
+        }
+        input {
+          position: absolute;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 150px;
+        }
+
+        select {
+          position: absolute;
+          left: 50%;
+          transform: translateX(105px);
+          width: 150px;
+        }
+
+        .rhfqoddl {
+          position: absolute;
+          left: 50%;
+          transform: translateX(85px);
+        }
+        .confirmNumBtn {
+          position: absolute;
+          top: 28px;
+          right: 30px;
+          background-color: #fff;
+          border-radius: 8px;
+        }
+        .confirmBtn {
+          position: absolute;
+          top: 88px;
+          right: 260px;
+          background-color: #fff;
+          border-radius: 8px;
+        }
+        .checkboxContainer {
+          margin: auto;
+          height: 18px;
+          width: 400px;
+          transform: translateX(30px);
+          input {
+            position: static;
+            width: 13px;
+            transform: translate(2px, 2px);
+            margin-left: 10px;
+          }
+          .checkboxName {
+            font-size: smaller;
+          }
+        }
+      }
+    }
+  }
+
+  .player {
+
+    .qwer {
+      height: 1000px;
+    }
+    
+    .videoContainer {
+      position: relative;
+      width: 100%;
+      height: 39.975vw;
+
+      .playerLayer {
+        background-color: rgba(0, 0, 0, 0);
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 7777;
+      }
+  
+      .cusorHidedPlayerLayer {
+        background-color: rgba(0, 0, 0, 0);
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 7777;
+        cursor: none;
+      }
+      
+      .video {
+        
+      }
+    
+      .controls {
+
+        
+        // input[type=range] {
+        //   width:100%;
+        //   // -webkit-appearance: none;
+        //   height: 1px;
+        //   outline: none;
+        //   background-color: #fff;
+        //   ::-moz-range-thumb {
+        //     color: #000;
+        //   }
+        // }
+        
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        position: absolute;
+        bottom: 5px;
+        
+        width: 100%;
+        height: 100%;
+        // z-index: 8888;
+
+        button {
+          background-color: rgba(0, 0, 0, 0);
+          border: none;
+          color: #fff;
+        }
+
+        .topControls{
+          padding-top: 10px;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          z-index: 8888;
+        }
+
+        .reportModal {
+          position: absolute;
+          top: 10px;
+          right: 10px;
+          background-color: #fff;
+          color:#000;
+          z-index: 9999;
+          display: flex;
+          flex-direction: column;
+          border: none;
+          
+          .reportComment {
+            border: 1px solid black;
+          }
+
+          button {
+            margin-top: -1px;
+            border: 1px solid black;
+            padding: 10px 0;
+            border-collapse: collapse;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0);
+            color: #000;
+          }
+        }
+
+        .centerPlayPauseBtn {
+          margin: auto;
+          background-color: rgba(0, 0, 0, 0.3);
+          width: 35px;
+          height: 35px;
+          border-radius: 50%;
+          border: none;
+          z-index: 8888;
+        
+        }
 
 
-.test {
-  width: 100%;
-  height: 100px;
-  background-color: #fff;
-  color: #000;
-  transition: 0.5s all;
+        .bottomControls{
+          display: flex;
+          flex-direction: column;
+          z-index: 8888;
+          margin-bottom: -5px;
+          background-color: rgba(0, 0, 0, 0.5);
+            
+          .timeControl {
+            margin: auto;
+            .timeSlider {
+              margin: auto;
+  
+              @include desktop {
+                width: 99vw;
+              }
+              @include tablet {
+                width: 98vw;
+              }
+            }
+          }
+
+          .bottom {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            
+            
+            .leftControls{
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+
+              .playPauseControl {
+                .playPauseBtn {
+                  background-color: rgba(0, 0, 0, 0);
+                  border: none;
+                }
+              }
+
+              .backwardForwardControl {
+                display: flex;
+                flex-direction: row;
+              }
+      
+              .muteControl {
+              }
+        
+              .volumeControl{  
+                .volumeSlider {
+                  width: 50px;;
+                }
+              }
+              .timeInfo {
+                margin-left: 10px;
+                padding-bottom: 3px;
+              }
+            }
+            
+            .rightControls {
+              display: flex;
+              flex-direction: row;
+              padding-top: 2px;
+
+              .playbackRateControl {
+                width: 70px;
+        
+                .playbackRateModal {
+                  display: flex;
+                  flex-direction: column;
+                  position: absolute;
+                  bottom: 40px;
+                  background-color: rgba(0, 0, 0, 0.5);
+                  width: 70px;
+            
+                  button {
+                    background-color: rgba(0, 0, 0, 0);
+                    border: none;
+                    color: #fff;
+                    width: 70px;
+                    height: 25px;
+
+                    .playbackRateCheck {
+                      position: absolute;
+                      left: 2px;
+                    }
+                  }
+                }
+              }
+
+              .fullScreenControl {
+                padding-top: 2px;
+              }
+            }
+          }
+        }
+      }
+
+    }
+    
+    
+  }
+
+  .search {
+    width: 100%;
+    height: 100%;
+
+    .searchWord {
+      text-align: center;
+      margin-top: 80px;
+    }
+
+    .comment {
+      height: 20vh;
+      margin-top: 150px;
+      text-align: center;
+    }
+
+    .searchedMovieList {
+      margin: 100px 0;
+      .searchedMovie {
+        display: flex;
+        flex-direction: row;
+        cursor: pointer;
+        @include desktop {
+          margin: 30px 20vw;
+        }
+        @include tablet {
+          margin: 30px 10vw;
+        }
+
+        .searchedMovieImg {
+          margin-right: 20px;
+          .moviePoster {
+          }
+        }
+        
+        .searchedMovieInfo {
+          display: flex;
+          flex-direction: column;
+          
+          .movieTitle {
+            font-size: larger;
+          }
+          .summary {
+            margin-top: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  .requestMovie {
+    h1 {
+      text-align: center;
+      margin-top: 100px;
+      margin-bottom: 50px;
+    }
+
+    .selectMenu {
+  
+      .Btns {
+        text-align: center;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+  
+        button {
+          margin-top: 60px;
+          margin-bottom: 10px;
+          margin-left: 120px;
+          margin-right: 120px;
+          height: 200px;
+          width: 200px;
+          background-color: #fff;
+          border-radius: 12px;
+        }
+  
+        .comment {
+          font-size: smaller;
+        }
+      }
+      
+    }
+
+    .requestBtn {
+          text-align: center;
+          margin-top: 50px;
+          height: 40px;
+          background-color: #fff;
+          border-radius: 10px;
+        }
+
+    .request {
+
+      .inputs {
+        text-align: center;
+        position: relative;
+        margin: auto;
+        margin-top: 100px;
+        width: 500px;
+
+        span  {
+          position: absolute;
+          left: 80px;
+        }
+
+        input {
+          width: 200px;
+          height: 18px;
+        }
+
+        .titleInput{
+          margin-bottom: 30px;
+        }
+
+        .directorInput{
+          button {
+            position: absolute;
+          }
+          
+          .directors {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin-top: 20px;
+  
+            .directorBox {
+              background-color: #fff;
+              color: #000;
+              display: flex;
+              flex-direction: row;
+              text-align: center;
+              width: 120px;
+              height: 19px;
+              border: 1px solid black;
+              margin: 0 5px;
+              
+              .director {
+                color: #000;
+                font-size: small;
+                width: 100px;
+                transform: translateX(10px);
+              }
+  
+              button {
+                background-color: rgba(0, 0, 0, 0);
+                border: none;
+                transform: translateX(100px);
+              }
+  
+            }
+  
+            .void {
+              height: 21px;
+              background-color: rgba(0, 0, 0, 0);
+            }
+          } 
+        }
+      
+      }
+    }
+
+    .upload {
+      .inputs {
+        text-align: center;
+        position: relative;
+        margin: auto;
+        margin-top: 100px;
+        width: 500px;
+
+        .inputName {
+          position: absolute;
+          left: 40px;
+        }
+
+        .addBtns {
+          position: absolute;
+        }
+
+        .inputBox {
+          margin: 30px 0;
+
+          .fileInput {
+            display: none;
+          }
+
+          .fileInputBtn {
+            width: 70px;
+            height: 70px;
+            transform: translateY(-24.5px);
+          }
+
+          input {
+            width: 200px;
+            height: 18px;
+          }
+
+          textarea {
+            width: 200px;
+            height: 100px;
+          }
+
+          .addedDatas {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            margin: 5px 0;
+  
+            .addedDataBox {
+              background-color: #fff;
+              color: #000;
+              display: flex;
+              flex-direction: row;
+              text-align: center;
+              width: 120px;
+              height: 19px;
+              border: 1px solid black;
+              margin: auto 5px;
+              
+              .addedData {
+                color: #000;
+                font-size: small;
+                width: 100px;
+                transform: translateX(10px);
+              }
+              
+              .delBtn {
+                background-color: rgba(0, 0, 0, 0);
+                border: none;
+              }
+              
+            }
+  
+            // .void {
+            //   height: 21px;
+            //   background-color: rgba(0, 0, 0, 0);
+            // }
+          }
+          .genresBox {
+            margin: auto;
+            border: 1px solid white;
+            width: 208px;
+            
+            input {
+              width: 13px;
+              transform: translateY(3px);
+            }
+
+            .genreCheckbox {
+              margin: 0 2.5px;
+            }
+          }
+          select {
+            width: 208px;
+            height: 24px;
+            text-align: center;
+          }
+        }
+      }
+    }
+  }
+
+  .account {
+    margin-top:  150px;
+    text-align: center;
+
+    .infoBox {
+      width: 600px;
+      margin: 50px auto;
+
+      .infoBoxName {
+        background-color: #fff;
+        color: #000;
+        font-size: larger;
+      }
+
+      ul {
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+
+        li {
+          width: 550px;
+          height: 25px;
+          margin: 10px auto;
+          border-bottom: 1px solid white;
+
+          position: relative;
+
+          .infoNameBox {
+            position: absolute;
+            left: 5px;
+          }
+          
+          .infoBox {
+          }
+
+          .btnBox {
+            position: absolute;
+            right: 5px;
+            width: 105px;
+            button{
+              background-color: #fff;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .notice {
+    text-align: center;
+    h1 {
+      margin-top: 100px;
+    }
+    
+    .noticeList {
+
+      .listBox {
+        margin: auto;
+        width: 500px;
+        height: 500px;
+
+        ul {
+          margin: 0;
+          padding: 0;
+          border: solid 1px white;
+          
+          li {
+            display: flex;
+            flex-direction: row;
+            justify-items: start;
+            border-bottom: solid 1px white;
+            border-top: solid 1px white;
+
+            .no {
+              width: 17.25px;
+              margin: 10px 20px;
+            }
+            .title {
+              margin: 10px 20px;
+            }
+          }
+        }
+      }
+
+      .currPageBtn {
+        background-color: #fff;
+        color: #000;
+        border-radius: 30%;
+      }
+
+      button {
+        background-color: rgba(0, 0, 0, 0);
+        border: none;
+        color: white;
+      }
+    }
+    .noticeDetail {
+      h2 {
+        margin: 50px 0;
+      }
+      .content {
+        margin: 0 auto;
+        width: 500px;
+        height: 500px;
+        text-align: start;
+      }
+    }
+  }
+
+  .customerService{
+    text-align: center;
+    h1 {
+      margin-top: 100px;
+    }
+
+    .FAQ {
+      .FAQBox {
+        margin-top: 70px;
+        height: 220px;
+
+        .FAQCategorys {
+          position: absolute;
+          left: 5vw;
+          width: 180px;
+          button {
+            width: 180px;
+            background-color: #fff;
+            text-align: start;
+            border: none;
+            border-bottom: solid 1px black;
+          }
+          .categoryBtn {
+            font-size: large;
+          }
+          .FAQBtn {
+            height: 24px;
+            font-size: small;
+          }
+        }
+        .FAQContent {
+          margin: auto;
+          text-align: center;
+          .content {
+            margin-top: 50px
+          }
+          .FAQComment{
+            transform: translateY(30px);
+          }
+        }
+      }
+
+      .inquiryBtn {
+        float: left;
+        top: 400px;
+        transform: translateX(5vw);
+        width: 180px;
+        border: none;
+        font-size: large;
+        background-color: #fff;
+        color: #000;
+      }
+    }
+    .inquiry {
+      text-align: center;
+      
+      .inquiryList {
+        h1 {
+          margin-top: 150px;
+        }
+        
+        .postBtn {
+          background-color: #fff;
+          color: #000;
+          width: 80px;
+          margin-bottom: 20px;
+          border-radius: 8px;
+          font-size: medium;
+          transform: translateX(205px);
+        }
+        
+        .listBox {
+          margin: auto;
+          width: 500px;
+          height: 500px;
+  
+          ul {
+            margin: 0;
+            padding: 0;
+            border: solid 1px white;
+            
+            li {
+              display: flex;
+              flex-direction: row;
+              justify-items: start;
+              border-bottom: solid 1px white;
+              border-top: solid 1px white;
+  
+              .no {
+                width: 17.25px;
+                margin: 10px 20px;
+              }
+              .title {
+                margin: 10px 20px;
+              }
+            }
+          }
+        }
+        .currPageBtn {
+          background-color: #fff;
+          color: #000;
+          border-radius: 30%;
+        }
+        button {
+          background-color: rgba(0, 0, 0, 0);
+          border: none;
+          color: white;
+        }
+      }
+
+      .inquiryDetail {
+        h2 {
+          margin: 50px 0;
+        }
+        .content {
+          margin: 0 auto;
+          width: 500px;
+          height: 500px;
+          text-align: start;
+        }
+      }
+
+      .inquiryPost{
+
+        .inputs {
+          margin-top: 100px;
+          text-align: center;
+
+          .inputBox{
+            margin-bottom: 30px;
+            input {
+              width: 200px;
+            }
+            select {
+              width: 208px;
+              height: 21px;
+              padding: 1px 2px;
+              border: solid white 2px;
+              text-align: center;
+            }
+            textarea {
+              width: 500px;
+              height: 300px;
+            }
+            .inputName {
+              position: absolute;
+              transform: translateX(-100px);
+            }
+          }
+        }
+        .postBtn{
+          text-align: center;
+          margin-top: 50px;
+          height: 40px;
+          background-color: #fff;
+          border-radius: 10px;
+        }
+      } 
+    }
+  }
 }
 
 //시멘틱 태그, 가운데정렬 분산, ul li 

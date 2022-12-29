@@ -1,0 +1,406 @@
+.App {
+  background-color: #000;
+  color: white;
+}
+.App ul {
+  list-style-type: none;
+}
+
+.modalOut {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 9998;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.closeBtn {
+  position: absolute;
+  top: 1px;
+  right: 1px;
+  background-color: rgba(0, 0, 0, 0);
+  color: #fff;
+  border: none;
+}
+
+header {
+  width: 100vw;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0);
+  z-index: 8888;
+}
+header .logo {
+  position: absolute;
+  left: 6.25vw;
+  top: 20px;
+}
+header nav button {
+  position: absolute;
+  top: 20px;
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+  color: white;
+}
+header nav .search {
+  right: 15vw;
+}
+header nav .search .searchIcon {
+  width: 30px;
+}
+header nav .menu {
+  right: 6.25vw;
+}
+header nav .menu .menuIcon {
+  width: 30px;
+}
+header .searchModal {
+  position: absolute;
+  right: 80px;
+  top: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  z-index: 9999;
+}
+header .searchModal .searchInput {
+  position: relative;
+  width: 220px;
+  height: 35px;
+}
+header .searchModal .searchInput .searchText {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(231, 231, 231, 0.31);
+  color: #000;
+  border-radius: 16px;
+  border: none;
+  outline: none;
+}
+header .searchModal .searchInput .searchBtn {
+  position: absolute;
+  top: 55%;
+  right: 0;
+  transform: translate(0, -50%);
+  background-color: rgba(0, 0, 0, 0);
+  border: none;
+}
+header .searchModal .searchInput .searchBtn .searchBtnIcon {
+  width: 30px;
+}
+header .searchModal .searchList {
+  background-color: #000;
+  display: flex;
+  flex-direction: row;
+}
+header .menuModal {
+  background-color: #404040;
+  width: 120px;
+  position: absolute;
+  right: 20px;
+  top: 40px;
+  padding: 0;
+  z-index: 9997;
+}
+header .menuModal button {
+  width: 100%;
+  padding: 10px 0;
+  margin-top: -1px;
+  border: 1px solid black;
+  border-collapse: collapse;
+  text-align: center;
+  background-color: rgba(0, 0, 0, 0);
+  color: #fff;
+}
+header .loginModal {
+  width: 450px;
+  height: 300px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 10vh auto;
+  border: 1px solid black;
+  background-color: #404040;
+  color: #fff;
+  z-index: 9999;
+}
+header .loginModal .loginInput {
+  width: 70%;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0);
+  color: #fff;
+  outline: none;
+  border: none;
+  border-bottom: 1px solid black;
+  margin-bottom: 30px;
+}
+header .loginModal .loginCheckbox {
+  width: 100%;
+  transform: translate(-35%, -15px);
+}
+header .loginModal .loginBtn {
+  width: 100px;
+  height: 40px;
+  border: none;
+  background-color: #fff;
+}
+
+main {
+  width: 100%;
+  overflow: hidden;
+}
+@media (min-width: 1280px) {
+  main .home .hero {
+    width: 100vw;
+    height: 40vw;
+    margin-bottom: 65px;
+  }
+}
+@media (max-width: 1280px) and (min-width: 500px) {
+  main .home .hero {
+    width: 100vw;
+    height: 39.0625vw;
+    margin-bottom: 10px;
+  }
+}
+main .home .movieLists {
+  margin-top: 0;
+}
+main .home .movieLists .movieList {
+  width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  position: relative;
+}
+@media (min-width: 1280px) {
+  main .home .movieLists .movieList {
+    margin-bottom: 65px;
+    transform: translateX(-80px);
+  }
+  main .home .movieLists .movieList .voidReducedTag {
+    width: 100%;
+    height: 35px;
+  }
+  main .home .movieLists .movieList .reducedTag {
+    width: 100%;
+    height: 35px;
+    margin-left: 10px;
+    text-align: start;
+  }
+  main .home .movieLists .movieList .reducedTag .tagIcon {
+    width: 25px;
+  }
+  main .home .movieLists .movieList .reducedTag .tagName {
+    position: relative;
+    bottom: 5px;
+  }
+}
+@media (max-width: 1280px) and (min-width: 500px) {
+  main .home .movieLists .movieList {
+    margin-bottom: 10px;
+    transform: translateX(-80px);
+  }
+  main .home .movieLists .movieList .voidReducedTag {
+    width: 100%;
+    height: 35px;
+  }
+  main .home .movieLists .movieList .reducedTag {
+    width: 100%;
+    height: 35px;
+    margin-left: 10px;
+    text-align: start;
+  }
+  main .home .movieLists .movieList .reducedTag .tagIcon {
+    width: 25px;
+  }
+  main .home .movieLists .movieList .reducedTag .tagName {
+    position: relative;
+    bottom: 5px;
+  }
+}
+main .home .movieLists .movieList .movieScroll {
+  overflow-x: scroll;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100%;
+}
+main .home .movieLists .movieList .movieScroll .tag {
+  padding-right: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+@media (min-width: 1280px) {
+  main .home .movieLists .movieList .movieScroll .tag {
+    height: 163px;
+  }
+}
+@media (max-width: 1280px) and (min-width: 500px) {
+  main .home .movieLists .movieList .movieScroll .tag {
+    height: 124px;
+  }
+}
+main .home .movieLists .movieList .movieScroll .tag .tagIcon {
+  width: 80px;
+}
+main .home .movieLists .movieList .movieScroll .scrollBtn, main .home .movieLists .movieList .movieScroll .nextBtn, main .home .movieLists .movieList .movieScroll .prevBtn {
+  position: absolute;
+  font-size: x-large;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.3);
+  border: none;
+  z-index: 7777;
+}
+@media (min-width: 1280px) {
+  main .home .movieLists .movieList .movieScroll .scrollBtn, main .home .movieLists .movieList .movieScroll .nextBtn, main .home .movieLists .movieList .movieScroll .prevBtn {
+    height: 163px;
+  }
+}
+@media (max-width: 1280px) and (min-width: 500px) {
+  main .home .movieLists .movieList .movieScroll .scrollBtn, main .home .movieLists .movieList .movieScroll .nextBtn, main .home .movieLists .movieList .movieScroll .prevBtn {
+    height: 124px;
+  }
+}
+main .home .movieLists .movieList .movieScroll .prevBtn {
+  left: 40px;
+}
+main .home .movieLists .movieList .movieScroll .nextBtn {
+  right: 18px;
+}
+main .home .movieLists .movieList .movieScroll .movie {
+  position: relative;
+}
+@media (min-width: 1280px) {
+  main .home .movieLists .movieList .movieScroll .movie {
+    margin: 0 5px;
+  }
+  main .home .movieLists .movieList .movieScroll .movie .moviePoster {
+    width: 290px;
+    height: 163px;
+  }
+}
+@media (max-width: 1280px) and (min-width: 500px) {
+  main .home .movieLists .movieList .movieScroll .movie {
+    margin: 0 4px;
+  }
+  main .home .movieLists .movieList .movieScroll .movie .moviePoster {
+    width: 228px;
+    height: 124px;
+  }
+}
+main .home .movieLists .movieList .movieScroll .movie:hover .layer {
+  display: block;
+}
+main .home .movieLists .movieList .movieScroll .movie:hover .movieInfo {
+  display: flex;
+}
+main .home .movieLists .movieList .movieScroll .movie .layer {
+  display: none;
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+}
+main .home .movieLists .movieList .movieScroll .movie .movieInfo {
+  display: none;
+}
+main .home .movieLists .movieList .movieScroll .movie .movieInfo .title {
+  position: absolute;
+  bottom: 15px;
+  left: 15px;
+}
+main .home .movieLists .movieList .movieScroll .movie .movieInfo .movieMenu {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+}
+main .home .movieLists .movieList .movieScroll .movie .movieInfo .movieMenu button {
+  background-color: rgba(0, 0, 0, 0);
+  color: white;
+  border: none;
+}
+main .home .movieLists .movieList ::-webkit-scrollbar {
+  display: none;
+}
+main .home .detailModal {
+  background-color: #000;
+  position: fixed;
+  top: 5%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 600px;
+  height: 800px;
+  z-index: 9999;
+}
+main .home .detailModal .detailImg {
+  width: 100%;
+}
+main .home .detailModal .playBtn {
+  position: absolute;
+  top: 38.5%;
+  right: 92%;
+  background-color: rgba(0, 0, 0, 0);
+  color: #fff;
+  border: none;
+}
+main .home .detailModal .keepBtn {
+  position: absolute;
+  top: 38.5%;
+  left: 94%;
+  background-color: rgba(0, 0, 0, 0);
+  color: #fff;
+  border: none;
+}
+main .home .detailModal .detailInfo {
+  width: 100%;
+}
+main .home .detailModal .detailInfo .runningTime {
+  width: 98%;
+  text-align: end;
+  font-size: 12px;
+}
+main .home .detailModal .detailInfo .title {
+  margin-left: 37px;
+}
+main .home .detailModal .detailInfo .summary {
+  margin: 0 37px;
+  font-size: 15px;
+}
+main .home .detailModal .detailInfo .otherInfo {
+  margin-top: 20px;
+  font-size: 15px;
+}
+main .home footer {
+  margin-top: 120px;
+  text-align: center;
+  margin-bottom: 120px;
+}
+main .home footer div {
+  margin: 10px;
+}
+main .home footer span {
+  margin: 10px;
+}
+main .home .gradiant {
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  height: 120px;
+  z-index: 6666;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgb(0, 0, 0) 100%);
+}
+
+.test {
+  width: 100%;
+  height: 100px;
+  background-color: #fff;
+  color: #000;
+  transition: 0.5s all;
+}/*# sourceMappingURL=App.css.map */

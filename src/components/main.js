@@ -6,7 +6,15 @@ import userData from '../userData';
 
 function Main(props){
   
-  const [detailModal, setDetailModal] = useState(-1);
+  // useEffect(() => {
+  //   const escKey = (e) => {
+  //     if(e.keyCode === 27){
+  //       setDetailModal(-1);
+  //     }
+  //   };
+  //   window.addEventListener("keyup", escKey);
+  //   return () => window.removeEventListener("keydown", escKey);
+  // },[])
   
   return(
     <div className="home">
@@ -14,12 +22,11 @@ function Main(props){
       <ul className='movieLists'>
         {props.tags.map((tag) => {
           return(
-            <MovieLists key={tag.id} tag={tag} movies={props.movies} setDetailModal={setDetailModal} />
+            <MovieLists key={tag.id} tag={tag} movies={props.movies} setDetailModal={props.setDetailModal} />
           )
         })}
       </ul>
-      <Footer />
-      {detailModal != -1 ? <DetailModal movie={props.movies.filter((movie) => movie.id == detailModal)} setDetailModal={setDetailModal} />: null}
+      {props.detailModal != -1 ? <DetailModal movie={props.movies.filter((movie) => movie.id == props.detailModal)} setDetailModal={props.setDetailModal} />: null}
       <div className='gradiant' />
     </div>
   )
@@ -73,7 +80,7 @@ function MovieLists(props) {
         <div className='tag'>
           <div>
             <img src={process.env.PUBLIC_URL + props.tag.tagIcon} className='tagIcon'/>
-            <div>{props.tag.tagName}</div>
+            <div className='tagName'>{props.tag.tagName}</div>
           </div>
         </div> 
           <TagMovies movies={tagMovies} setDetailModal={props.setDetailModal} />
@@ -105,13 +112,17 @@ function TagMovies(props) {
     props.movies.map((movie) => {
       return(
         <li className='movie' key={movie.id}>
-          <div className='layer' onClick={() => {navigate('/palyer/'+movie.id)}} />
+          <div className='layer' onClick={() => {navigate('/player/'+movie.id)}} />
           <img className="moviePoster" src={process.env.PUBLIC_URL + movie.posterImg} />
           <div className={'movieInfo'}>
             <div className='title'>{movie.title}</div>
             <div className='movieMenu'>
-              <button>찜</button>
-              <button onClick={() => {props.setDetailModal(movie.id)}}>상세보기</button>
+              <button>
+                <img className='keepBtnIcon' src={process.env.PUBLIC_URL + "/assets/keep.png"} />
+              </button>
+              <button onClick={() => {props.setDetailModal(movie.id)}}>
+                <img className='detailBtnIcon' src={process.env.PUBLIC_URL + "/assets/detail.png"} />
+              </button>
             </div>
           </div>
         </li>
@@ -122,44 +133,16 @@ function TagMovies(props) {
   )
 }
 
-function Footer() {
-  return(
-    <footer>
-      <div>
-        <span>고객센터</span>
-        <span>후원</span>
-        <span>개인정보</span>
-        <span>법적고지</span>
-      </div>
-      <div>
-        <span>about us</span>
-        <span>문의하기</span>
-        <span>대학 한눈에보기</span>
-      </div>
-      <pre>
-      <br /><br />
-      언더그라운드    통신판매법 신고번호 : 123456    전화번호:01062740069<br /><br />
-      대표: 문지욱<br /><br />
-      이메일주소: sallormoon917@naver.com<br /><br />
-      주소: 충북 제천시 한수면 봉화재길 517<br /><br />
-      사업자 등록 번호: 123456<br /><br />
-      클라우드 호스팅: Amazon Web Sevices Inc.<br /><br />
-      공정거래위원회 웹사이트: 12356789<br /><br />
-      </pre>
-    </footer>
-  )
-}
-
 function DetailModal(props) {
   const navigate = useNavigate();
 
   return (
     <div>
-      <div className='modalOut'></div>
+      <div className='modalOut' onClick={() => {props.setDetailModal(-1)}}></div>
       <div className='detailModal'>
         <button className='closeBtn' onClick={() => {props.setDetailModal(-1)}}>x</button>
         <img className='detailImg' src={process.env.PUBLIC_URL + props.movie[0].posterImg} />
-          <button className='playBtn' onClick={() => {navigate('/palyer/'+props.movie[0].id)}}>재생</button>
+          <button className='playBtn' onClick={() => {navigate('/player/'+props.movie[0].id)}}>재생</button>
           <button className='keepBtn'>찜</button>
         <div className='detailInfo'>
           <div className='runningTime'>총 120분</div>
